@@ -11,6 +11,7 @@ export default function Menu() {
   const { showActionSheetWithOptions } = useActionSheet();
 
   const options = ['Sobre', 'Sair'];
+
   const aboutButtonIndex = 0;
   const destructiveButtonIndex = 1;
   const cancelButtonIndex = 2;
@@ -28,8 +29,14 @@ export default function Menu() {
             },
             (buttonIndex) => {
               switch (buttonIndex) {
-                case 0: navigation.navigate('About'); break;
-                case 1: navigation.navigate('Login'); break;
+                case 0: navigation.navigate('About');
+                  break;
+                case 1: navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Login' }],
+                });
+                  break;
+                default: break;
               }
             }
           );
@@ -43,7 +50,7 @@ export default function Menu() {
 const styles = StyleSheet.create({
   icon: {
     fontSize: 40,
-    margin: 25,
+    marginRight: 25,
     color: '#e82127',
   },
 });

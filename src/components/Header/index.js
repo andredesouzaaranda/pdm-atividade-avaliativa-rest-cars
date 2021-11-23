@@ -1,31 +1,23 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 
-import {
-  ActionSheetProvider,
-  connectActionSheet
-} from '@expo/react-native-action-sheet';
-
 import Menu from '../Menu';
 
-function Header() {
+export default function Header() {
   return (
-    <ActionSheetProvider>
-      <View style={styles.container}>
-        <Image
-          source={require('../../../assets/images/logo.svg')}
-          style={styles.headerImage}
-        />
+    <View style={styles.container}>
+      <Image
+        source={require('../../../assets/images/logo.png')}
+        style={styles.headerImage}
+      />
 
-        <Menu />
-      </View>
-    </ActionSheetProvider>
+      <Menu />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     height: 75,
     flexDirection: 'row',
     alignItems: 'center',
@@ -36,12 +28,8 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
   },
   headerImage: {
-    width: 100,
-    height: 12,
+    width: 160,
+    height: 20,
     margin: 25,
   },
 });
-
-const ConnectedApp = connectActionSheet(Header);
-
-export default ConnectedApp;

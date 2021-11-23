@@ -22,14 +22,14 @@ export default function Login() {
       navigation.navigate('Home');
     }
 
-    setError('Usuário ou senha inválidos');
+    setError('Usuário ou senha inválidos!');
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <Image
-          source={require('../../assets/images/logo.svg')}
+          source={require('../../assets/images/logo.png')}
           style={styles.headerImage}
         />
 
@@ -44,7 +44,7 @@ export default function Login() {
           style={styles.input}
           onChangeText={setPassword}
           placeholder="Senha"
-          secureTextEntry="true"
+          secureTextEntry={true}
         />
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
   },
   card: {
-    width: 300,
-    height: 300,
+    width: 350,
+    height: 450,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f0f0f0',
@@ -86,28 +86,30 @@ const styles = StyleSheet.create({
   headerImage: {
     width: 200,
     height: 25,
-    margin: 25,
+    margin: 50,
   },
   input: {
-    width: 250,
-    height: 40,
+    width: 300,
+    height: 60,
     padding: 10,
     marginBottom: 10,
     borderWidth: 1,
     borderRadius: 5,
     borderColor: '#fff',
     backgroundColor: '#fff',
+    fontSize: 20,
   },
   buttonImage: {
-    width: 50,
-    height: 50,
-    margin: 25,
+    width: 100,
+    height: 100,
+    margin: 50,
   },
   error: {
     width: 250,
     height: 25,
-    padding: 5,
-    textAlign: 'center',
+    margin: 10,
     color: '#e82127',
+    textAlign: 'center',
+    fontSize: 18,
   }
 });
