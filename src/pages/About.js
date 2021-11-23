@@ -69,17 +69,17 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   text: {
-    fontSize: 18,
+    fontSize: 20,
   },
   authorName: {
     margin: 10,
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
   },
   link: {
-    fontSize: 18,
+    fontSize: 20,
     color: 'blue',
-    opacity: '65%',
+    opacity: 0.6,
   },
   boxSuperior: {
     marginBottom: 50,

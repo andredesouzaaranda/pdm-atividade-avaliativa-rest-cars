@@ -8,10 +8,10 @@ import Header from '../components/Header';
 
 const Item = ({ item }) => (
   <View style={styles.sectionItem}>
-    <Text>ID: {item.id}</Text>
-    <Text>Marca: {item.brand}</Text>
-    <Text>Modelo: {item.model}</Text>
-    <Text>Ano: {item.year}</Text>
+    <Text style={styles.sectionText}>ID: {item.id}</Text>
+    <Text style={styles.sectionText}>Marca: {item.brand}</Text>
+    <Text style={styles.sectionText}>Modelo: {item.model}</Text>
+    <Text style={styles.sectionText}>Ano: {item.year}</Text>
   </View>
 );
 
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   sectionHeader: {
-    width: 300,
+    width: 350,
     padding: 10,
     margin: 10,
     borderRadius: 5,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   sectionItem: {
-    width: 250,
+    width: 300,
     padding: 10,
     margin: 10,
     borderRadius: 5,
@@ -59,7 +59,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
+  },
+  sectionText: {
+    fontSize: 18,
   }
 });
