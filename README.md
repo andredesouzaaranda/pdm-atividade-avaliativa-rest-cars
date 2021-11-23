@@ -28,7 +28,8 @@
 </h1>
 
 <p align="center">
-  <a href="#-Início">Início</a>
+  <a href="#-Início">Início</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-Instalação">Instalação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
 <div align="center">
@@ -57,11 +58,11 @@
     - usuário: teste
     - senha: 123
 
-- Instalação.
+## 🚀 Instalação
 
 1) Descompacte o projeto.
 
-2) Instale as dependências.
+2) Instale as dependências do yarn.
 
 ```
 $ yarn install
