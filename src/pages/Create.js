@@ -5,24 +5,40 @@ import {
   Text,
   Image,
   TextInput,
-  TouchableOpacity,
+  Button,
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
-export default function Login() {
+import api from '../services/api';
+
+export default function Create() {
   const navigation = useNavigation();
 
-  const [user, setUser] = useState('');
-  const [password, setPassword] = useState('');
+  const [brand, setBrand] = useState('');
+  const [model, setModel] = useState('');
+  const [hp, setHP] = useState('');
   const [error, setError] = useState('');
 
-  function handleLogin() {
-    if (user === 'teste' && password === '123') {
-      navigation.navigate('Home');
+  const handlePost = async () => {
+    if (!brand || !model || !hp) {
+      setError('Preencha todos os campos!');
+      return;
+    } else {
+      setError('');
     }
 
-    setError('Usuário ou senha inválidos!');
+    try {
+      await api.post('/cars', {
+        model: model,
+        brand: brand,
+        hp: hp,
+      });
+
+      navigation.navigate('List');
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -33,33 +49,36 @@ export default function Login() {
           style={styles.headerImage}
         />
 
+        <Text style={styles.title}>Cadastrar carro</Text>
+
         <TextInput
           style={styles.input}
-          onChangeText={setUser}
-          placeholder="Usuário, Email ou Telefone"
+          onChangeText={setModel}
+          placeholder="Modelo"
           autoFocus={true}
         />
 
         <TextInput
           style={styles.input}
-          onChangeText={setPassword}
-          placeholder="Senha"
-          secureTextEntry={true}
+          onChangeText={setBrand}
+          placeholder="Marca"
+        />
+
+        <TextInput
+          style={styles.input}
+          onChangeText={setHP}
+          placeholder="HP"
         />
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
 
-        <TouchableOpacity
-          activeOpacity={0.2}
-          onPress={handleLogin}
-        >
-          <Image
-            source={require('../../assets/images/icon.png')}
-            style={styles.buttonImage}
-          />
-        </TouchableOpacity>
+        <Button
+          title="Cadastrar"
+          onPress={handlePost}
+          color="#e82127"
+        />
       </View>
-    </View>
+    </View >
   );
 }
 
@@ -86,7 +105,11 @@ const styles = StyleSheet.create({
   headerImage: {
     width: 200,
     height: 25,
-    margin: 50,
+    margin: 20,
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 10,
   },
   input: {
     width: 300,
@@ -98,11 +121,6 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     backgroundColor: '#fff',
     fontSize: 20,
-  },
-  buttonImage: {
-    width: 100,
-    height: 100,
-    margin: 50,
   },
   error: {
     width: 250,
