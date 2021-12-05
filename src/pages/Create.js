@@ -8,11 +8,15 @@ import {
   Alert,
 } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
+
 import Header from '../components/Header';
 
 import api from '../services/api';
 
 export default function Create() {
+  const navigation = useNavigation();
+
   const [model, setModel] = useState('');
   const [brand, setBrand] = useState('');
   const [hp, setHP] = useState('');
@@ -39,6 +43,8 @@ export default function Create() {
       Alert.alert('Sucesso!', 'Automóvel cadastrado!', [
         { text: 'OK' },
       ]);
+
+      navigation.navigate('List');
     } catch (error) {
       // console.error(error);
       setError('Não foi possível cadastrar!');
