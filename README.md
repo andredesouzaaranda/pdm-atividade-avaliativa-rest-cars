@@ -61,7 +61,7 @@
 $ yarn install
 ```
 
-3) Execute a aplicação.
+3) Execute a aplicação usando Expo.
 
 ```
 $ yarn start
