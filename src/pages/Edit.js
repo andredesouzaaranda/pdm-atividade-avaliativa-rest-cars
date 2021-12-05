@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -8,17 +8,24 @@ import {
   Alert,
 } from 'react-native';
 
+import { useRoute } from '@react-navigation/native';
+
 import Header from '../components/Header';
 
 import api from '../services/api';
 
-export default function Create() {
-  const [model, setModel] = useState('');
-  const [brand, setBrand] = useState('');
-  const [hp, setHP] = useState('');
+export default function Edit() {
+  const route = useRoute();
+  const car = route.params.item;
+
+  const [id, setId] = useState(car.id);
+  const [model, setModel] = useState(car.model);
+  const [brand, setBrand] = useState(car.brand);
+  const [hp, setHP] = useState(Number(car.hp));
+
   const [error, setError] = useState('');
 
-  const handleRegisterCar = async () => {
+  const handleUpdateCar = async () => {
     if (!model || !brand || !hp) {
       setError('Preencha todos os campos!');
       return;
@@ -28,43 +35,32 @@ export default function Create() {
     }
 
     try {
-      await api.post('/cars', {
+      await api.patch(`/cars/${id}`, {
         model: model,
         brand: brand,
         hp: hp,
       });
 
-      clearFields();
+      clearError();
 
-      Alert.alert('Sucesso!', 'Automóvel cadastrado!', [
+      Alert.alert('Sucesso!', 'Automóvel atualizado!', [
         { text: 'OK' },
       ]);
     } catch (error) {
       // console.error(error);
-      setError('Não foi possível cadastrar!');
+      setError('Não foi possível atualizar!');
     }
-  }
-
-  const clearFields = () => {
-    setModel('');
-    setBrand('');
-    setHP('');
   }
 
   const clearError = () => {
     setError('');
   }
 
-  useEffect(() => {
-    clearFields();
-    clearError();
-  }, []);
-
   return (
     <View style={styles.container}>
       <Header />
 
-      <Text style={styles.title}>Cadastrar Automóvel</Text>
+      <Text style={styles.title}>Editar Automóvel</Text>
 
       <View style={styles.card}>
         <TextInput
@@ -86,7 +82,7 @@ export default function Create() {
 
         <TextInput
           style={styles.input}
-          value={hp}
+          value={hp.toString()}
           onChangeText={setHP}
           placeholder="Potência"
           onFocus={() => clearError()}
@@ -95,8 +91,8 @@ export default function Create() {
         {error ? <Text style={styles.error}>{error}</Text> : null}
 
         <Button
-          title="Cadastrar"
-          onPress={handleRegisterCar}
+          title="Atualizar"
+          onPress={handleUpdateCar}
           color="#e82127"
         />
       </View>
@@ -136,8 +132,8 @@ const styles = StyleSheet.create({
     width: 250,
     height: 25,
     marginBottom: 10,
-    fontSize: 18,
-    textAlign: 'center',
     color: '#e82127',
-  },
+    textAlign: 'center',
+    fontSize: 18,
+  }
 });

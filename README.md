@@ -11,7 +11,7 @@
     Programação para Dispositivos Móveis
 </h3>
 <h3 align="center">
-    Avaliação 1.
+    Avaliação 2 - REST.
 </h3>
 <br>
 <h4 align="center">
@@ -50,13 +50,6 @@
     - React Native 0.64.3.
     - React Native Web 0.17.1.
     - Expo 43.0.2.
-
-- Informações para autenticação.
-
-  - Usuário.
-    
-    - usuário: teste
-    - senha: 123
 
 ## 🚀 Instalação
 
